@@ -37,7 +37,6 @@ library
   exposed-modules: Lib, Initials, PathUtils
   other-modules:   Paths_haskell_book_interactive
   build-depends:
-    , containers
     , turtle
     , mtl
     , process
