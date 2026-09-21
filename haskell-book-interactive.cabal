@@ -29,7 +29,7 @@ common common-options
   ghc-options:
     -Wall -Wcompat -Widentities -Wincomplete-uni-patterns
     -Wincomplete-record-updates -Wredundant-constraints
-    -fhide-source-paths -Wpartial-fields
+    -fhide-source-paths -Wpartial-fields -Wunused-packages
 
 library
   import:          common-options
@@ -46,19 +46,13 @@ library
     , extra
     , filepath
     , unix-compat
-    , directory-ospath-streaming
     , doctest
-    , regex-base
     , regex-tdfa
-    , tasty-hunit
     , text
     , bytestring
-    , split
     , directory
-    , filemanip
     , foldl
     , htaglib
-    , system-filepath
 
 executable haskell-book-interactive
   import:         common-options
