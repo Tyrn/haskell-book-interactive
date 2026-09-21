@@ -29,7 +29,7 @@ common common-options
   ghc-options:
     -Wall -Wcompat -Widentities -Wincomplete-uni-patterns
     -Wincomplete-record-updates -Wredundant-constraints
-    -fhide-source-paths -Wpartial-fields -Wunused-packages
+    -fhide-source-paths -Wpartial-fields
 
 library
   import:          common-options
