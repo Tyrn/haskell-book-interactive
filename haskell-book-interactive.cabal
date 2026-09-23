@@ -29,6 +29,7 @@ library
   exposed-modules:  Ch03, Ch04, Ch05
   other-modules:   Paths_haskell_book_interactive
   build-depends:
+    , containers
     , turtle
     , mtl
     , process
@@ -66,6 +67,7 @@ test-suite haskell-book-interactive-test
   other-modules:  Ch03Spec, Ch04Spec, Ch05Spec
   build-depends:
     , hspec
+    , hspec-expectations
     , text
     , regex-tdfa
     , filepath
