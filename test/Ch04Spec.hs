@@ -1,9 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module MiscSpec (spec) where
+module Ch04Spec (spec) where
 
+import Ch04 (cmpstrNaturally, humanFine)
 import Data.Text qualified as T
-import Lib (cmpstrNaturally, humanFine)
 import Test.Hspec
 import Text.Regex.TDFA
 

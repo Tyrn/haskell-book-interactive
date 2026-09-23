@@ -1,6 +1,6 @@
-module PathUtilsSpec (spec) where
+module Ch05Spec (spec) where
 
-import PathUtils (isRelativeTo, relativeSuffix)
+import Ch05 (isRelativeTo, relativeSuffix)
 import System.FilePath
 import Test.Hspec
 

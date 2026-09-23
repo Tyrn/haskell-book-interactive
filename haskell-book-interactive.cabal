@@ -12,14 +12,6 @@ extra-doc-files:
   CHANGELOG.md
   README.md
 
--- category:
--- description:     description
--- synopsis:        one-line synopsis
--- homepage:        https://github.com/FIXME/haskell-book-interactive#readme
--- source-repository head
---   type:     git
---   location: git://github.com/FIXME/haskell-book-interactive.git
-
 common common-options
   -- build-depends:    base >=4.9 && <5
   build-depends:
@@ -34,7 +26,7 @@ common common-options
 library
   import:          common-options
   hs-source-dirs:  src
-  exposed-modules: Lib, Initials, PathUtils
+  exposed-modules:  Ch03, Ch04, Ch05
   other-modules:   Paths_haskell_book_interactive
   build-depends:
     , turtle
@@ -71,7 +63,7 @@ test-suite haskell-book-interactive-test
   type:           exitcode-stdio-1.0
   hs-source-dirs: test
   main-is:        Spec.hs
-  other-modules:  InitialsSpec, MiscSpec, PathUtilsSpec
+  other-modules:  Ch03Spec, Ch04Spec, Ch05Spec
   build-depends:
     , hspec
     , text
@@ -82,15 +74,4 @@ test-suite haskell-book-interactive-test
     , QuickCheck
   build-tool-depends:
 --    , calligraphy:calligraphy
-  ghc-options:    -threaded -rtsopts -with-rtsopts=-N
-
-benchmark haskell-book-interactive-bench
-  import:         common-options
-  type:           exitcode-stdio-1.0
-  hs-source-dirs: bench
-  main-is:        Main.hs
-  build-depends:
-    , criterion
-    , haskell-book-interactive
-
   ghc-options:    -threaded -rtsopts -with-rtsopts=-N

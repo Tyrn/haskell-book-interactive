@@ -2,7 +2,7 @@
 {-# LANGUAGE QuasiQuotes #-}
 
 -- | Support for Procrustes SmArT utility (audio album builder).
-module Lib (
+module Ch04 (
   cmpstrNaturally,
   humanFine,
   Settings (..),
@@ -15,6 +15,8 @@ module Lib (
   initialCtx,
 ) where
 
+import Ch03
+import Ch05 (isRelativeTo)
 import Control.Foldl qualified as FL
 import Control.Monad.Catch (onException)
 import Control.Monad.Extra
@@ -27,8 +29,6 @@ import Data.Monoid
 import Data.String.Interpolate (i)
 import Data.Text qualified as T
 import Data.Version (showVersion)
-import Initials
-import PathUtils (isRelativeTo)
 import Paths_haskell_book_interactive
 import Sound.HTagLib
 import System.Directory (doesDirectoryExist, listDirectory, removeFile)

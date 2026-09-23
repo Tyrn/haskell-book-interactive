@@ -1,7 +1,7 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Initials (
+module Ch03 (
   initials,
   isSomeText,
   removeQuotedSubstrings,

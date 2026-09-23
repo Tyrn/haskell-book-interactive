@@ -1,13 +1,13 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-import InitialsSpec qualified
-import MiscSpec qualified
-import PathUtilsSpec qualified
+import Ch03Spec qualified
+import Ch04Spec qualified
+import Ch05Spec qualified
 import Test.Hspec
 
 main :: IO ()
 main =
   hspec $ do
-    describe "MiscSpec" MiscSpec.spec
-    describe "InitialsSpec" InitialsSpec.spec
-    describe "PathUtilsSpec" PathUtilsSpec.spec
+    describe "Ch03Spec" Ch03Spec.spec
+    describe "Ch04Spec" Ch04Spec.spec
+    describe "Ch05Spec" Ch05Spec.spec

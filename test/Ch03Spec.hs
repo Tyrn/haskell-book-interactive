@@ -1,8 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module InitialsSpec (spec) where
+module Ch03Spec (spec) where
 
-import Initials (collectQuotedSubstrings, initials, isSomeText, removeQuotedSubstrings, splitOnDots)
+import Ch03 (collectQuotedSubstrings, initials, isSomeText, removeQuotedSubstrings, splitOnDots)
 import Test.Hspec
 
 spec :: Spec

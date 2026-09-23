@@ -1,4 +1,4 @@
-module PathUtils (isRelativeTo, relativeSuffix) where
+module Ch05 (isRelativeTo, relativeSuffix) where
 
 import Data.List (isPrefixOf, stripPrefix)
 import System.FilePath
