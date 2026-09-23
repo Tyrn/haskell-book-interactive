@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 import Ch03Spec qualified
 import Ch04Spec qualified
 import Ch05Spec qualified
