@@ -26,7 +26,7 @@ common common-options
 library
   import:          common-options
   hs-source-dirs:  src
-  exposed-modules:  Ch03, Ch04, Ch05
+  exposed-modules:  Ch02, Ch03, Ch04, Ch05
   other-modules:   Paths_haskell_book_interactive
   build-depends:
     , containers
@@ -64,7 +64,7 @@ test-suite haskell-book-interactive-test
   type:           exitcode-stdio-1.0
   hs-source-dirs: test
   main-is:        Spec.hs
-  other-modules:  Ch03Spec, Ch04Spec, Ch05Spec
+  other-modules:  Ch02Spec, Ch03Spec, Ch04Spec, Ch05Spec
   build-depends:
     , hspec
     , hspec-expectations
