@@ -68,6 +68,7 @@ test-suite haskell-book-interactive-test
   build-depends:
     , hspec
     , hspec-expectations
+    , doctest
     , text
     , regex-tdfa
     , filepath
