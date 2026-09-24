@@ -6,6 +6,6 @@ import Test.Hspec
 main :: IO ()
 main =
   hspec $ do
-    describe "Strings" Ch03Spec.spec
-    describe "Basic datatypes" Ch04Spec.spec
-    describe "Types" Ch05Spec.spec
+    describe "Chapter 3: Strings" Ch03Spec.spec
+    describe "Chapter 4: Basic datatypes" Ch04Spec.spec
+    describe "Chapter 5: Types" Ch05Spec.spec
