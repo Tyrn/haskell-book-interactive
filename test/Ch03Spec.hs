@@ -5,11 +5,9 @@ import Test.Hspec
 
 spec :: Spec
 spec = do
-  describe "concat" $ do
-    context "basic cases" $
-      it "makes a list from a list of two lists" $
-        a1 [[1, 2, 3], [4, 5, 6 :: Int]] `shouldBe` [1, 2, 3, 4, 5, 6]
-  describe "append" $ do
-    context "basic cases" $
-      it "make a list of two lists" $
-        b1 [1, 2, 3] [4, 5, 6 :: Int] `shouldBe` [1, 2, 3, 4, 5, 6]
+  describe "concat (a1)" $ do
+    it "flattens a list of lists" $
+      a1 [[1, 2, 3], [4, 5, 6]] `shouldBe` ([1, 2, 3, 4, 5, 6] :: [Int])
+  describe "++ (b1)" $ do
+    it "appends two lists" $
+      b1 [1, 2, 3] [4, 5, 6] `shouldBe` ([1, 2, 3, 4, 5, 6] :: [Int])
