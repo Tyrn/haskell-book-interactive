@@ -26,17 +26,24 @@ map (*2) [1,2,3]
 \\x -> x + 1
 @
 
-=== Pipeline (TODO: make in simpler and clearer)
+==== Mnemonic
 
-In Haskell, data flows through a /pipeline/. Each stage either
-/produces/ values, /consumes/ values, or does both. The
-core notions below describe the pieces of that flow.
+[Declaration] /names/.
+[Expression] /computes/ or /reduces/ to a value.
 
-Every producer, consumer, and transducer below is an /expression/.
+=== Producer and Consumer (TODO: this concept is to be introduced later)
+
+In Haskell, computation can be pictured as data flowing from a
+/producer/ to a /consumer/. The two roles describe most
+list-processing code you will meet. The richer machinery for
+composing such stages into longer chains -- a /pipeline/ -- awaits
+us later on.
+
+Every producer and consumer below is an /expression/.
 
 ==== Producer
 
-Something that /emits/ values downstream, on demand.
+Something that /emits/ values on demand.
 
 *"A source that hands out values when asked."
 
@@ -46,13 +53,9 @@ Something that /emits/ values downstream, on demand.
 getLine            -- IO action producing input
 @
 
-In a pipeline, the producer sits at the head:
-
-> [1,2,3]  ──▶  ...
-
 ==== Consumer
 
-Something that /pulls/ values from upstream and uses them up.
+Something that /pulls/ values and uses them up.
 
 *"A sink that drains values in and does something with them."
 
@@ -60,60 +63,50 @@ Something that /pulls/ values from upstream and uses them up.
 foldr
 sum
 print
-sinkList
 @
 
-In a pipeline, the consumer sits at the tail:
+==== A function can be both
 
-> ...  ──▶  sum
-
-==== Transducer
-
-A stage that is /both/ a consumer and a producer -- it pulls from
-upstream, transforms, and emits downstream.
-
-*"A pipe in the middle: takes in, gives out."
+The same function is often a consumer of its input and a producer
+of its output. @map@ is the classic example:
 
 @
-map (+1)           -- consumes a list, produces a new list
-filter even
-mapC (+1)          -- conduit-style
+map :: (a -> b) -> [a] -> [b]
 @
 
-==== Putting it together
+* it /consumes/ the input list (via @foldr@);
+* it /produces/ the output list (via @build@).
 
-> [1,2,3]  ──▶  map (+1)  ──▶  [2,3,4]
-> producer      transducer      producer
->
-> [1,2,3]  .|  mapC (+1)  .|  sinkList
-> producer      transducer      consumer
+This dual role is what makes @map@ a candidate for /fusion/: the
+compiler can collapse a producer directly into a consumer so that
+no intermediate list is ever built. About fusion and
+the @foldr@\/@build@ machinery, later on.
+
+==== Grouping @map (+1) [1,2,3]@
 
 @map (+1) [1,2,3]@, itself an expression and a producer, consists of:
 
-+------------------------+-------------------------------------------------------------+
-| Component              | Role                                                        |
-+========================+=============================================================+
-| @[1,2,3]@              | the producer (source)                                       |
-+------------------------+-------------------------------------------------------------+
-| @map@                  | the consumer combinator                                     |
-+------------------------+-------------------------------------------------------------+
-| @(+1)@                 | the transformer applied to each consumed value              |
-+------------------------+-------------------------------------------------------------+
-| @map (+1)@             | the transducer stage as a whole                             |
-+------------------------+-------------------------------------------------------------+
++------------------------+------------------------------------------------+
+| Component              | Role                                           |
++========================+================================================+
+| @[1,2,3]@              | the producer                                   |
++------------------------+------------------------------------------------+
+| @map@                  | the consumer /and/ producer                    |
++------------------------+------------------------------------------------+
+| @(+1)@                 | the transformer applied to each consumed value |
++------------------------+------------------------------------------------+
+| @map (+1)@             | the consumer /and/ producer, partially applied |
++------------------------+------------------------------------------------+
 
 ==== Mnemonic
 
-[Producer] gives,
-[Consumer] takes,
-[Transducer] does both,
-[Expression] computes,
-[Declaration] names.
+[Producer] /gives/.
+[Consumer] /takes/.
 -}
 module Ch02 where
 
 {- | This is a doctest and unit test template to be used
-from now on along the way.
+from now on.
 
 >>> identity 42
 42
