@@ -6,7 +6,7 @@
 
 A piece of syntax that /names/ something and gives it a meaning.
 
-*"This thing is called X, and here's what it means."*
+*"This thing is called X, and here's what it means."
 
 @
 x = 5
@@ -18,7 +18,7 @@ data Color = Red | Green
 
 Anything you can /evaluate/ or /reduce/ to get a value.
 
-*"A recipe that produces a value when you run it."*
+*"A recipe that produces a value when you run it."
 
 @
 2 + 3
@@ -26,7 +26,7 @@ map (*2) [1,2,3]
 \\x -> x + 1
 @
 
-=== Pipeline
+=== Pipeline (TODO: make in simpler and clearer)
 
 In Haskell, data flows through a /pipeline/. Each stage either
 /produces/ values, /consumes/ values, or does both. The
@@ -38,7 +38,7 @@ Every producer, consumer, and transducer below is an /expression/.
 
 Something that /emits/ values downstream, on demand.
 
-*"A source that hands out values when asked."*
+*"A source that hands out values when asked."
 
 @
 [1..]              -- infinite list
@@ -54,7 +54,7 @@ In a pipeline, the producer sits at the head:
 
 Something that /pulls/ values from upstream and uses them up.
 
-*"A sink that drains values in and does something with them."*
+*"A sink that drains values in and does something with them."
 
 @
 foldr
@@ -72,7 +72,7 @@ In a pipeline, the consumer sits at the tail:
 A stage that is /both/ a consumer and a producer -- it pulls from
 upstream, transforms, and emits downstream.
 
-*"A pipe in the middle: takes in, gives out."*
+*"A pipe in the middle: takes in, gives out."
 
 @
 map (+1)           -- consumes a list, produces a new list
@@ -88,13 +88,19 @@ mapC (+1)          -- conduit-style
 > [1,2,3]  .|  mapC (+1)  .|  sinkList
 > producer      transducer      consumer
 
-Grouping @map (+1) [1,2,3]@:
+@map (+1) [1,2,3]@, itself an expression and a producer, consists of:
 
-* @[1,2,3]@    -- the producer (source)
-* @map@        -- the consumer combinator
-* @(+1)@       -- the transformer applied to each consumed value
-* @map (+1)@   -- the transducer stage as a whole
-* whole expr   -- a producer (emits @[2,3,4]@ for whatever comes next)
++------------------------+-------------------------------------------------------------+
+| Component              | Role                                                        |
++========================+=============================================================+
+| @[1,2,3]@              | the producer (source)                                       |
++------------------------+-------------------------------------------------------------+
+| @map@                  | the consumer combinator                                     |
++------------------------+-------------------------------------------------------------+
+| @(+1)@                 | the transformer applied to each consumed value              |
++------------------------+-------------------------------------------------------------+
+| @map (+1)@             | the transducer stage as a whole                             |
++------------------------+-------------------------------------------------------------+
 
 ==== Mnemonic
 
@@ -106,8 +112,8 @@ Grouping @map (+1) [1,2,3]@:
 -}
 module Ch02 where
 
-{- | One-sentence purpose: this is a template to be used
-from now on in this omnibus.
+{- | This is a doctest and unit test template to be used
+from now on along the way.
 
 >>> identity 42
 42

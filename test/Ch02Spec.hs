@@ -6,5 +6,5 @@ import Test.Hspec
 spec :: Spec
 spec = do
   describe "id (identity)" $ do
-    it "see the meaning of identity" $
+    it "shows the meaning of identity" $
       identity "ego" `shouldBe` "ego"
