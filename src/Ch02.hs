@@ -1,12 +1,8 @@
 {- |
 
-== Definitions
+== Things to remember
 
-In Haskell, data flows through a pipeline. Each stage either
-/produces/ values, /consumes/ values, or does both. The four
-core notions below describe the pieces of that flow.
-
-=== 1. Declaration
+=== Declaration
 
 A piece of syntax that /names/ something and gives it a meaning.
 
@@ -18,12 +14,9 @@ f n = n + 1
 data Color = Red | Green
 @
 
-Note: avoid the word /statement/ here -- Haskell is expression-based,
-not statement-based.
+=== Expression
 
-=== 2. Expression
-
-Anything you can /evaluate to get a value/.
+Anything you can /evaluate/ or /reduce/ to get a value.
 
 *"A recipe that produces a value when you run it."*
 
@@ -33,9 +26,15 @@ map (*2) [1,2,3]
 \\x -> x + 1
 @
 
-Every producer, consumer, and transducer below is itself an expression.
+=== Pipeline
 
-=== 3. Producer
+In Haskell, data flows through a /pipeline/. Each stage either
+/produces/ values, /consumes/ values, or does both. The
+core notions below describe the pieces of that flow.
+
+Every producer, consumer, and transducer below is an /expression/.
+
+==== Producer
 
 Something that /emits/ values downstream, on demand.
 
@@ -51,7 +50,7 @@ In a pipeline, the producer sits at the head:
 
 > [1,2,3]  ──▶  ...
 
-=== 4. Consumer
+==== Consumer
 
 Something that /pulls/ values from upstream and uses them up.
 
@@ -68,7 +67,7 @@ In a pipeline, the consumer sits at the tail:
 
 > ...  ──▶  sum
 
-=== Bonus: Transducer
+==== Transducer
 
 A stage that is /both/ a consumer and a producer -- it pulls from
 upstream, transforms, and emits downstream.
@@ -81,7 +80,7 @@ filter even
 mapC (+1)          -- conduit-style
 @
 
-=== Putting it together
+==== Putting it together
 
 > [1,2,3]  ──▶  map (+1)  ──▶  [2,3,4]
 > producer      transducer      producer
@@ -97,10 +96,13 @@ Grouping @map (+1) [1,2,3]@:
 * @map (+1)@   -- the transducer stage as a whole
 * whole expr   -- a producer (emits @[2,3,4]@ for whatever comes next)
 
-=== Mnemonic
+==== Mnemonic
 
-[Producer] gives, [Consumer] takes, [Transducer] does both,
-[Expression] computes, [Declaration] names.
+[Producer] gives,
+[Consumer] takes,
+[Transducer] does both,
+[Expression] computes,
+[Declaration] names.
 -}
 module Ch02 where
 
