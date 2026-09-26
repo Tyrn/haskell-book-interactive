@@ -64,7 +64,6 @@ test-suite haskell-book-interactive-test
   type:           exitcode-stdio-1.0
   hs-source-dirs: test
   main-is:        Spec.hs
-  other-modules:  Ch02Spec, Ch03Spec, Ch04Spec, Ch05Spec
   build-depends:
     , hspec
     , hspec-expectations
@@ -76,7 +75,7 @@ test-suite haskell-book-interactive-test
     , haskell-book-interactive
     , QuickCheck
   build-tool-depends:
---    , calligraphy:calligraphy
+    , hspec-discover:hspec-discover
   ghc-options:    -threaded -rtsopts -with-rtsopts=-N
 
 test-suite doctests
